@@ -111,7 +111,11 @@ function checkVictory (line, column){
         }  
     }   
     if (numberDisc === 3){
-        console.log('victory')
+        console.log('victory');
+        
+        check1  = true; 
+        check2 = true;
+        numberDisc = 0;
     }else{
         check1  = true; 
         check2 = true;
@@ -144,7 +148,11 @@ function checkVictory (line, column){
         }  
     }           
     if (numberDisc === 3){
-        console.log('victory')
+        console.log('victory');
+        
+        check1  = true; 
+        check2 = true;
+        numberDisc = 0;
     }else{
         check1  = true; 
         check2 = true;
@@ -177,7 +185,11 @@ function checkVictory (line, column){
         }
     }
     if (numberDisc === 3){
-        console.log('victory')
+        console.log('victory');
+        
+        check1  = true; 
+        check2 = true;
+        numberDisc = 0;
     }else{
         check1  = true; 
         check2 = true;
@@ -210,7 +222,11 @@ function checkVictory (line, column){
         }
     }
     if (numberDisc === 3){
-        console.log('victory')
+        console.log('victory');
+
+        check1  = true; 
+        check2 = true;
+        numberDisc = 0;
     }else{
         check1  = true; 
         check2 = true;
