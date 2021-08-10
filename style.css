@@ -52,16 +52,3 @@ body {
     height: calc(100% / 6);
     border: 2px solid gray;
 }
-
-.container-button{
-    position: absolute;
-    top:2vh;
-    left: 70%;
-}
-
-button{
-    font-size: 20px;
-    border-style: none;
-    border: 2px solid;
-    border-radius: 5px;
-}
