@@ -71,9 +71,8 @@ const addDisc = (event) =>{
 
     console.table(map)
 
-    //call victory check
+    //call check draw
     checkDraw()
-    checkVictory (row, column);
     
 }
 
@@ -81,9 +80,11 @@ const addDisc = (event) =>{
 function checkDraw(){
     const lastLine = map[0];
     const draw = lastLine.every(elem => elem !=='E');
-
+    
     if (draw === true){
         console.log ('empate');
+    }else{
+        checkVictory (row, column);
     }
 
 }
