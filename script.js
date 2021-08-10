@@ -71,8 +71,183 @@ const addDisc = (event) =>{
 
     console.table(map)
 
+    //call check draw
+    checkDraw()
+    
 }
 
+//function check draw
+function checkDraw(){
+    const lastLine = map[0];
+    const draw = lastLine.every(elem => elem !=='E');
+    
+    if (draw === true){
+        console.log ('empate');
+    }else{
+        checkVictory (row, column);
+    }
+
+}
+
+//function check victory
+function checkVictory (line, column){
+   console.log(line, column)
+   console.log(map)
+
+    let check1  = true; 
+    let check2 = true;
+    let numberDisc = 0;
+
+    for (counter = 1; check1 === true; counter++){
+        let lastDisc = map[line][column];     
+        if(line+counter < 6 ){
+            if(lastDisc === map[line+counter][column]){
+                check1 = true;
+                numberDisc = numberDisc + 1;
+                console.log(numberDisc);       
+            }
+        }else{        
+            check1 = false;
+                for(counter2 = 1; check2 === true; counter2++){
+                    if(line-counter2 > 0){     
+                        if(lastDisc === map[line-counter2][column]){
+                            check2 = true;
+                            numberDisc = numberDisc + 1;
+                            console.log(numberDisc);   
+                        }else{
+                            check2 = false;       
+                        }
+                    }else{
+                        check2 = false;
+                    }    
+                }
+        }  
+    }   
+    if (numberDisc === 3){
+        console.log('victory');
+        
+        check1  = true; 
+        check2 = true;
+        numberDisc = 0;
+    }else{
+        check1  = true; 
+        check2 = true;
+        numberDisc = 0;
+    }
+
+    for (counter = 1; check1 === true; counter++){
+        let lastDisc = map[line][column];
+        if(column+counter < 6 ){
+            if(lastDisc === map[line][column+counter]){
+                check1 = true;
+                numberDisc = numberDisc + 1;
+                console.log(numberDisc);
+            }
+        }else{
+                for(counter2 = 1; check2 === true; counter2++){
+                    if(column-counter2 > 0){
+                        if(lastDisc === map[line][column-counter2]){
+                            check2 = true;
+                            numberDisc = numberDisc + 1;
+                            console.log(numberDisc);
+                        }else{
+                            check2 = false;
+                        }
+                    }else{
+                        check2 = false;
+                    }
+                }
+            check1 = false;
+        }  
+    }           
+    if (numberDisc === 3){
+        console.log('victory');
+        
+        check1  = true; 
+        check2 = true;
+        numberDisc = 0;
+    }else{
+        check1  = true; 
+        check2 = true;
+        numberDisc = 0;
+    }
+
+    for (counter = 1; check1 === true; counter++){
+        let lastDisc = map[line][column];
+        if(line-counter > 0 && column+counter < 7){
+            if(lastDisc === map[line-counter][column+counter]){
+                check1 = true;
+                numberDisc = numberDisc + 1;
+                console.log(numberDisc);
+            }
+        }else{
+            for(counter2 = 1; check2 === true; counter2++){
+                if(line+counter2 < 6 && column-counter2 > 0){
+                    if(lastDisc === map[line+counter2][column-counter2]){
+                        check2 = true;
+                        numberDisc = numberDisc + 1;
+                        console.log(numberDisc);
+                    }else{
+                        check2 = false;
+                    }
+                }else{
+                    check2 = false;
+                }
+            }
+            check1 = false
+        }
+    }
+    if (numberDisc === 3){
+        console.log('victory');
+        
+        check1  = true; 
+        check2 = true;
+        numberDisc = 0;
+    }else{
+        check1  = true; 
+        check2 = true;
+        numberDisc = 0;
+    }
+
+    for (counter = 1; check1 === true; counter++){
+        let lastDisc = map[line][column];
+        if(line+counter < 6 && column+counter < 7){
+            if(lastDisc === map[line+counter][column+counter]){
+                check1 = true;
+                numberDisc = numberDisc + 1;
+                console.log(numberDisc);
+            }
+        }else{
+            for(counter2 = 1; check2 === true; counter2++){
+                if(line-counter2 > 0 && column-counter2 > 0){
+                    if(lastDisc === map[line-counter2][column-counter2]){
+                        check2 = true;
+                        numberDisc = numberDisc + 1;
+                        console.log(numberDisc);
+                    }else{
+                        check2 = false;
+                    }
+                }else{
+                    check2 = false;
+                }
+            }
+            check1 = false
+        }
+    }
+    if (numberDisc === 3){
+        console.log('victory');
+
+        check1  = true; 
+        check2 = true;
+        numberDisc = 0;
+    }else{
+        check1  = true; 
+        check2 = true;
+        numberDisc = 0;
+    }
+    
+
+}
 
 
 createColumns();
