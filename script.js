@@ -53,6 +53,7 @@ const addDisc = (event) =>{
     } else {
         target.insertBefore(disc, target.children[0]);
     }
+    }
     
     // variables used to update the map array
     let column = Number(target.dataset.column);
@@ -77,6 +78,7 @@ const addDisc = (event) =>{
     //call check victory
     checkVictory (row, column);
     
+
 }
 
 //function check draw
@@ -172,7 +174,7 @@ function checkVictory (line, column){
             for(counter2 = 1; check2 === true; counter2++){
                 if(line-counter2 > 0 && column-counter2 > 0 && lastDisc === map[line-counter2][column-counter2]){
                         check2 = true;
-                        numberDisc = numberDisc + 1;                       
+                        numberDisc = numberDisc + 1;
                 }else{
                     check2 = false;
                 }
@@ -185,23 +187,19 @@ function checkVictory (line, column){
     check1 = true; 
     check2 = true;
     numberDisc = 0;
-
-
-    }
-
 }
 
-// checkn winner
+// check winner
 
 function checkWnner(numberDisc, lastDisc){    
     if (numberDisc === 3 && lastDisc === '0'){
-        console.log('victory black');      
+        console.log('victory black');
     }
     if (numberDisc === 3 && lastDisc === '1'){
         console.log('victory red')
     }
     if (numberDisc !== 3){
-        checkDraw();
+        checkDraw()
     }
 }
 
