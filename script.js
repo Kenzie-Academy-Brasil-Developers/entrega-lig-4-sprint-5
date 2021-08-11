@@ -36,15 +36,18 @@ const createColumns = () => {
 
 const addDisc = (event) =>{
 
+    
+
     const target = event.currentTarget;
     const disc = document.createElement('div');
+
 
     disc.classList.add('disc');
     disc.dataset.col = target.dataset.column;
     disc.dataset.row = 5 - target.childElementCount; 
     disc.style.backgroundColor = discColor[turn];
 
-
+    if(target.childElementCount !== 6){
     if(target.childElementCount === 0){
         target.appendChild(disc);
     } else {
@@ -64,7 +67,7 @@ const addDisc = (event) =>{
     } else {
         turn = 0;
     }
-
+    
     
     console.clear();
     console.log(`Row: ${row} - Column: ${column}`);
@@ -183,6 +186,9 @@ function checkVictory (line, column){
     check2 = true;
     numberDisc = 0;
 
+
+    }
+
 }
 
 // checkn winner
@@ -202,10 +208,12 @@ function checkWnner(numberDisc, lastDisc){
 createColumns();
 
 
-
 columnsElement.forEach((element)=>{
     element.addEventListener('click', addDisc);
  })
+
+
+
 
 
 
