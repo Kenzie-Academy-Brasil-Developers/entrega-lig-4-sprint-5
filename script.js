@@ -1,6 +1,7 @@
 // ===== Global variables ======
 
 const container = document.querySelector('.container');
+const playerElm = document.querySelectorAll('.player');
 let columnsElement;
 let discColor = ['black', 'red'];
 let turn = 0;
@@ -22,7 +23,7 @@ const createColumns = () => {
 
     for(let col = 0; col < 7; col++){
         let div = document.createElement('div');
-        div.classList.add('column');
+        div.classList.add('column', 'black_turn');
         
         div.dataset.column = col;
 
@@ -62,12 +63,24 @@ const addDisc = (event) =>{
     // update map array
     map[row][column] = turn.toString();
 
-    // switch the player turn
+    // switch the player turn and change classes
     if(turn === 0){
         turn = 1;
     } else {
         turn = 0;
     }
+
+    columnsElement.forEach((element)=>{
+        element.classList.remove('red_turn', 'black_turn');
+        element.classList.add(discColor[turn]+'_turn');
+    })
+
+    playerElm.forEach((e)=>{
+        e.classList.remove('selected');
+    })
+
+    playerElm[turn].classList.add('selected');
+
     
     
     console.clear();
