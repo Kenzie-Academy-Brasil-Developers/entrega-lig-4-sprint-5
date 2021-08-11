@@ -1,6 +1,7 @@
 // ===== Global variables ======
 
 const container = document.querySelector('.container');
+const playerElm = document.querySelectorAll('.player');
 let columnsElement;
 let discColor = ['black', 'red'];
 let turn = 0;
@@ -73,6 +74,12 @@ const addDisc = (event) =>{
         element.classList.remove('red_turn', 'black_turn');
         element.classList.add(discColor[turn]+'_turn');
     })
+
+    playerElm.forEach((e)=>{
+        e.classList.remove('selected');
+    })
+
+    playerElm[turn].classList.add('selected');
 
     
     
