@@ -72,7 +72,7 @@ const addDisc = (event) =>{
     console.table(map)
 
     //call check victory
-    checkVictory (row, column);
+    checkVictoryColumn (row, column);
     
 }
 
@@ -88,7 +88,7 @@ function checkDraw(){
 }
 
 //function check victory
-function checkVictory (line, column){
+function checkVictoryColumn (line, column){
 
     let lastDisc = map[line][column]; 
     let check1  = true; 
@@ -101,7 +101,7 @@ function checkVictory (line, column){
                 numberDisc = numberDisc + 1;                  
         }else{        
             for(counter2 = 1; check2 === true; counter2++){
-                if(line-counter2 > 0 && lastDisc === map[line-counter2][column]){     
+                if(line-counter2 >= 0 && lastDisc === map[line-counter2][column]){     
                     check2 = true;
                     numberDisc = numberDisc + 1;                           
                 }else{
@@ -112,18 +112,24 @@ function checkVictory (line, column){
         }
     }  
     checkWnner(numberDisc, lastDisc);
+    checkVictoryLine  (line, column)
+}
 
-    check1 = true; 
-    check2 = true;
-    numberDisc = 0;
+
+function checkVictoryLine  (line, column){
+
+    let lastDisc = map[line][column]; 
+    let check1  = true; 
+    let check2 = true;
+    let numberDisc = 0;
 
     for (counter = 1; check1 === true; counter++){
-        if(column+counter < 6 && lastDisc === map[line][column+counter]){
+        if(column+counter < 7 && lastDisc === map[line][column+counter]){
                 check1 = true;
                 numberDisc = numberDisc + 1;              
         }else{
             for(counter2 = 1; check2 === true; counter2++){
-                if(column-counter2 > 0 && lastDisc === map[line][column-counter2]){ 
+                if(column-counter2 >= 0 && lastDisc === map[line][column-counter2]){ 
                     check2 = true;
                     numberDisc = numberDisc + 1;                    
                 }else{
@@ -134,32 +140,43 @@ function checkVictory (line, column){
         }  
     }           
     checkWnner(numberDisc, lastDisc);
+    checkVictoryCrescentDiagonal (line, column)
+}
 
-    check1 = true; 
-    check2 = true;
-    numberDisc = 0;
+function checkVictoryCrescentDiagonal (line, column){
 
-    for (counter = 1; check1 === true; counter++){
-        if(line-counter > 0 && column+counter < 7 && lastDisc === map[line-counter][column+counter]){
-                check1 = true;
-                numberDisc = numberDisc + 1;             
-        }else{
-            for(counter2 = 1; check2 === true; counter2++){
-                if(line+counter2 < 6 && column-counter2 > 0 && lastDisc === map[line+counter2][column-counter2]){
-                    check2 = true;
-                    numberDisc = numberDisc + 1;                    
-                }else{
-                    check2 = false;
+    let lastDisc = map[line][column]; 
+    let check1  = true; 
+    let check2 = true;
+    let numberDisc = 0;
+    
+        for (counter = 1; check1 === true; counter++){
+            if(line-counter >= 0 && column+counter < 7 && lastDisc === map[line-counter][column+counter]){
+                    check1 = true;
+                    numberDisc = numberDisc + 1;             
+            }else{
+                for(counter2 = 1; check2 === true; counter2++){
+                    if(line+counter2 < 6 && column-counter2 >= 0 && lastDisc === map[line+counter2][column-counter2]){
+                        check2 = true;
+                        numberDisc = numberDisc + 1;                    
+                    }else{
+                        check2 = false;
+                    }
                 }
+                check1 = false
             }
-            check1 = false
         }
-    }
-    checkWnner(numberDisc, lastDisc);
+        checkWnner(numberDisc, lastDisc);
+        checkVictoryDecrescentDiagonal (line, column)
 
-    check1 = true; 
-    check2 = true;
-    numberDisc = 0;
+}
+
+function checkVictoryDecrescentDiagonal (line, column) {
+
+    let lastDisc = map[line][column]; 
+    let check1  = true; 
+    let check2 = true;
+    let numberDisc = 0;
 
     for (counter = 1; check1 === true; counter++){
         if(line+counter < 6 && column+counter < 7 && lastDisc === map[line+counter][column+counter]){
@@ -167,7 +184,7 @@ function checkVictory (line, column){
                 numberDisc = numberDisc + 1;               
         }else{
             for(counter2 = 1; check2 === true; counter2++){
-                if(line-counter2 > 0 && column-counter2 > 0 && lastDisc === map[line-counter2][column-counter2]){
+                if(line-counter2 >= 0 && column-counter2 >= 0 && lastDisc === map[line-counter2][column-counter2]){
                         check2 = true;
                         numberDisc = numberDisc + 1;                       
                 }else{
@@ -177,13 +194,11 @@ function checkVictory (line, column){
             check1 = false
         }
     }
-    checkWnner(numberDisc, lastDisc)
-
-    check1 = true; 
-    check2 = true;
-    numberDisc = 0;
-
+    checkWnner(numberDisc, lastDisc);
+    checkDraw();
 }
+
+
 
 // checkn winner
 
@@ -193,9 +208,6 @@ function checkWnner(numberDisc, lastDisc){
     }
     if (numberDisc === 3 && lastDisc === '1'){
         console.log('victory red')
-    }
-    if (numberDisc !== 3){
-        checkDraw();
     }
 }
 
