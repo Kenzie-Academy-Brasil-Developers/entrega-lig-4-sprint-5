@@ -36,21 +36,24 @@ const createColumns = () => {
 
 const addDisc = (event) =>{
 
+    
+
     const target = event.currentTarget;
     const disc = document.createElement('div');
+
 
     disc.classList.add('disc');
     disc.dataset.col = target.dataset.column;
     disc.dataset.row = 5 - target.childElementCount; 
     disc.style.backgroundColor = discColor[turn];
 
-
+    if(target.childElementCount !== 6){
     if(target.childElementCount === 0){
         target.appendChild(disc);
     } else {
         target.insertBefore(disc, target.children[0]);
     }
-    
+}
     // variables used to update the map array
     let column = Number(target.dataset.column);
     let row = 6 - target.childElementCount;
@@ -64,7 +67,7 @@ const addDisc = (event) =>{
     } else {
         turn = 0;
     }
-
+    
     
     console.clear();
     console.log(`Row: ${row} - Column: ${column}`);
@@ -84,7 +87,6 @@ function checkDraw(){
     if (draw === true){
         console.log ('empate');
     }
-
 }
 
 //function check victory
@@ -168,10 +170,9 @@ function checkVictoryCrescentDiagonal (line, column){
         }
         checkWnner(numberDisc, lastDisc);
         checkVictoryDecrescentDiagonal (line, column)
-
 }
 
-function checkVictoryDecrescentDiagonal (line, column) {
+function checkVictoryDecrescentDiagonal (line, column){
 
     let lastDisc = map[line][column]; 
     let check1  = true; 
@@ -207,17 +208,13 @@ function checkWnner(numberDisc, lastDisc){
         console.log('victory black');      
     }
     if (numberDisc === 3 && lastDisc === '1'){
-        console.log('victory red')
+        console.log('victory red');
     }
 }
 
 createColumns();
 
 
-
 columnsElement.forEach((element)=>{
     element.addEventListener('click', addDisc);
  })
-
-
-
