@@ -6,6 +6,7 @@ let columnsElement;
 let discColor = ['black', 'red'];
 let turn = 0;
 
+
 // referecial map array
 let map = [
     ["E", "E", "E", "E", "E", "E", "E"],
@@ -220,9 +221,13 @@ function checkVictoryDecrescentDiagonal (line, column){
 function checkWnner(numberDisc, lastDisc){    
     if (numberDisc === 3 && lastDisc === '0'){
         console.log('victory black');
+        blackWin();
     }
     if (numberDisc === 3 && lastDisc === '1'){
         console.log('victory red');
+        redWin();
+
+
     }
 }
 
@@ -262,3 +267,39 @@ startGameButton.addEventListener('click', startGame)
 columnsElement.forEach((element) => {
     element.addEventListener('click', addDisc);
  })
+
+ function blackWin(){
+    const vict = document.querySelector('.container-victory');
+    let divvict = document.createElement('p');
+    divvict.classList.add('victory');
+    vict.style.display = "flex";
+    vict.appendChild(divvict);
+    divvict.innerText ="JOGADOR 1 GANHOU";
+    const players = document.querySelector('.players_container');
+    players.style.display = "none"; 
+    container.style.display = 'none';    
+ }
+
+ function redWin(){
+    const vict = document.querySelector('.container-victory');
+    let divvict = document.createElement('p');
+    divvict.classList.add('victory');
+    vict.style.display = "flex";
+    vict.appendChild(divvict);
+    divvict.innerText ="JOGADOR 2 GANHOU";
+    const players = document.querySelector('.players_container');
+    players.style.display = "none";
+    container.style.display = 'none';
+ }
+
+ function equal(){
+    const vict = document.querySelector('.container-victory');
+    let divvict = document.createElement('p');
+    divvict.classList.add('victory');
+    vict.style.display = "flex";
+    vict.appendChild(divvict);
+    divvict.innerText ="EMPATE";
+    const players = document.querySelector('.players_container');
+    players.style.display = "none";
+    container.style.display = "none";
+ }

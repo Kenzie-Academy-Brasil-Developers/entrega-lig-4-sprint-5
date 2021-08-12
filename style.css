@@ -246,6 +246,32 @@ label {
     box-shadow: inset 0 0 1px 5px #4e282857, inset 0 0 18px 9px #18181885;
 }
 
+.container-victory{
+    text-align: center;
+    width: 250px;
+    height: 50px;
+    background: #000000b0;
+    color: #fff;
+    border-radius: 10px;
+    border: 3px solid transparent;
+    display: none;
+    justify-content: space-around;
+    align-items: center;
+    transition: all .3s linear;
+}
+
+#breset{
+    margin-top: 20px;
+    text-align: center;
+    width: 100px;
+    height: 50px;
+    background: #000000b0;
+    color: #fff;
+    border-radius: 10px;
+    border: 3px solid transparent;
+    transition: all .3s linear;
+}
+
 
 
 /* ===== MEDIA QUERIES ===== */
