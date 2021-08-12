@@ -108,16 +108,34 @@ aside {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
-    padding: 25px 35px;
+    flex-direction: column;
 }
 
 label {
     color: white;
 }
 
+.playerRedInput {
+    margin-top: 25px;
+}
+
 .hidden {
     display: none;
+}
+
+button {
+    margin-top: 50px;
+    padding: 25px 35px;
+    border: solid 1.5px white;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: white;
+    border: solid 1.5px black;
+    color: black;
 }
 
 .container {
