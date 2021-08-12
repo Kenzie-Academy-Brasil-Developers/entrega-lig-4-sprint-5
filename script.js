@@ -52,12 +52,19 @@ const addDisc = (event) =>{
 
 
     if(target.childElementCount !== 6){
-        
         if(target.childElementCount === 0){
             target.appendChild(disc);
         } else {
             target.insertBefore(disc, target.children[0]);
         }
+
+
+        // variables used to update the map array
+        let column = Number(target.dataset.column);
+        let row = 6 - target.childElementCount;
+
+        // update map array
+        map[row][column] = turn.toString();
 
         // switch the player turn and change classes
         if(turn === 0){
@@ -76,26 +83,17 @@ const addDisc = (event) =>{
         })
 
         playerElm[turn].classList.add('selected');
+
+        console.clear();
+        console.log(`Row: ${row} - Column: ${column}`);
+
+        console.table(map)
+
+        //call check victory
+        checkVictoryColumn (row, column);
     }
 
-    // variables used to update the map array
-    let column = Number(target.dataset.column);
-    let row = 6 - target.childElementCount;
-
-    // update map array
-    map[row][column] = turn.toString();
-
     
-
-    
-    
-    console.clear();
-    console.log(`Row: ${row} - Column: ${column}`);
-
-    console.table(map)
-
-    //call check victory
-    checkVictoryColumn (row, column);
     
 
 }
