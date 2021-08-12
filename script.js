@@ -8,7 +8,6 @@ let columnsElement;
 let discColor = ['black', 'red'];
 let turn = 0;
 
-
 // referecial map array
 let map = [
     ["E", "E", "E", "E", "E", "E", "E"],
@@ -42,8 +41,8 @@ const addDisc = (event) =>{
 
     
 
-    const target = event.currentTarget;
-    const disc = document.createElement('div');
+    let target = event.currentTarget;
+    let disc = document.createElement('div');
 
 
     disc.classList.add('disc');
@@ -104,6 +103,7 @@ function checkDraw(){
     
     if (draw === true){
         console.log ('empate');
+        equal();
     }
 }
 
@@ -290,7 +290,7 @@ columnsElement.forEach((element) => {
     divvict.classList.add('victory');
     vict.style.display = "flex";
     vict.appendChild(divvict);
-    divvict.innerText ="JOGADOR 1 GANHOU";
+    divvict.innerHTML = inputBlackPlayer;
     const players = document.querySelector('.players_container');
     players.style.display = "none"; 
     container.style.display = 'none';    
@@ -302,7 +302,7 @@ columnsElement.forEach((element) => {
     divvict.classList.add('victory');
     vict.style.display = "flex";
     vict.appendChild(divvict);
-    divvict.innerText ="JOGADOR 2 GANHOU";
+    divvict.innerHTML = inputRedPlayer;
     const players = document.querySelector('.players_container');
     players.style.display = "none";
     container.style.display = 'none';
@@ -319,3 +319,38 @@ columnsElement.forEach((element) => {
     players.style.display = "none";
     container.style.display = "none";
  }
+
+ function resetAll(){
+    container.innerHTML = "";
+    const vict = document.querySelector('.container-victory');
+    vict.style.display = "none";
+    console.log('apagando');
+ }
+
+ const breset = document.getElementById("breset");
+ 
+ breset.addEventListener('click', function r(){
+    resetAll();
+    const players = document.querySelector('.players_container');
+    players.style.display = "flex";
+    
+    map = [
+        ["E", "E", "E", "E", "E", "E", "E"],
+        ["E", "E", "E", "E", "E", "E", "E"],
+        ["E", "E", "E", "E", "E", "E", "E"],
+        ["E", "E", "E", "E", "E", "E", "E"],
+        ["E", "E", "E", "E", "E", "E", "E"],
+        ["E", "E", "E", "E", "E", "E", "E"],
+    ]
+
+    
+    createColumns();
+    
+    columnsElement.forEach((element) => {
+        element.addEventListener('click', addDisc);
+     })
+    container.style.display = 'flex';
+    const resetvict = document.querySelector('.container-victory');
+    resetvict.textContent = "";
+    });
+    
