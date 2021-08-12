@@ -115,8 +115,13 @@ label {
     color: white;
 }
 
+.playerBlackInput {
+    margin-left: 22%;
+}
+
 .playerRedInput {
     margin-top: 25px;
+    margin-left: 22%;
 }
 
 .hidden {
@@ -281,4 +286,11 @@ button:hover {
         height: calc(100% - 90px);
     }
 
+    .playerRedInput {
+        margin-left: 0;
+    }
+
+    .playerBlackInput {
+        margin-left: 0;
+    }
 }
