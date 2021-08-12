@@ -41,22 +41,42 @@ const addDisc = (event) =>{
 
     
 
-    const target = event.currentTarget;
-    const disc = document.createElement('div');
+    let target = event.currentTarget;
+    let disc = document.createElement('div');
 
 
     disc.classList.add('disc');
     disc.dataset.col = target.dataset.column;
     disc.dataset.row = 5 - target.childElementCount; 
-    disc.style.backgroundColor = discColor[turn];
+    disc.classList.add('color--'+discColor[turn]);
+
 
     if(target.childElementCount !== 6){
-    if(target.childElementCount === 0){
-        target.appendChild(disc);
-    } else {
-        target.insertBefore(disc, target.children[0]);
+        
+        if(target.childElementCount === 0){
+            target.appendChild(disc);
+        } else {
+            target.insertBefore(disc, target.children[0]);
+        }
+
+        // switch the player turn and change classes
+        if(turn === 0){
+            turn = 1;
+        } else {
+            turn = 0;
+        }
+
+        columnsElement.forEach((element)=>{
+            element.classList.remove('red_turn', 'black_turn');
+            element.classList.add(discColor[turn]+'_turn');
+        })
+
+        playerElm.forEach((e)=>{
+            e.classList.remove('selected');
+        })
+
+        playerElm[turn].classList.add('selected');
     }
-}
 
     // variables used to update the map array
     let column = Number(target.dataset.column);
@@ -65,23 +85,7 @@ const addDisc = (event) =>{
     // update map array
     map[row][column] = turn.toString();
 
-    // switch the player turn and change classes
-    if(turn === 0){
-        turn = 1;
-    } else {
-        turn = 0;
-    }
-
-    columnsElement.forEach((element)=>{
-        element.classList.remove('red_turn', 'black_turn');
-        element.classList.add(discColor[turn]+'_turn');
-    })
-
-    playerElm.forEach((e)=>{
-        e.classList.remove('selected');
-    })
-
-    playerElm[turn].classList.add('selected');
+    
 
     
     
@@ -103,6 +107,7 @@ function checkDraw(){
     
     if (draw === true){
         console.log ('empate');
+        equal();
     }
 }
 
@@ -222,9 +227,13 @@ function checkVictoryDecrescentDiagonal (line, column){
 function checkWnner(numberDisc, lastDisc){    
     if (numberDisc === 3 && lastDisc === '0'){
         console.log('victory black');
+        blackWin();
     }
     if (numberDisc === 3 && lastDisc === '1'){
         console.log('victory red');
+        redWin();
+
+
     }
 }
 
@@ -256,6 +265,9 @@ const startGame = () => {
 
         asideContainer.classList.add('hidden')
         gameContainer.classList.remove('hidden')
+
+        
+
     } 
     else {
     let textBlackPlayer = document.createTextNode('Jogador 1')
@@ -270,6 +282,9 @@ const startGame = () => {
     asideContainer.classList.add('hidden')
     gameContainer.classList.remove('hidden')
     }
+
+    document.querySelector('footer').style.height = '0px';
+    document.querySelector('footer').style.padding = '0';
 }
 
 let startGameButton = document.querySelector('button')
@@ -278,3 +293,74 @@ startGameButton.addEventListener('click', startGame)
 columnsElement.forEach((element) => {
     element.addEventListener('click', addDisc);
  })
+
+ function blackWin(){
+    const vict = document.querySelector('.container-victory');
+    let divvict = document.createElement('p');
+    divvict.classList.add('victory');
+    vict.style.display = "flex";
+    vict.appendChild(divvict);
+    divvict.innerHTML = inputBlackPlayer;
+    const players = document.querySelector('.players_container');
+    players.style.display = "none"; 
+    container.style.display = 'none';    
+ }
+
+ function redWin(){
+    const vict = document.querySelector('.container-victory');
+    let divvict = document.createElement('p');
+    divvict.classList.add('victory');
+    vict.style.display = "flex";
+    vict.appendChild(divvict);
+    divvict.innerHTML = inputRedPlayer;
+    const players = document.querySelector('.players_container');
+    players.style.display = "none";
+    container.style.display = 'none';
+ }
+
+ function equal(){
+    const vict = document.querySelector('.container-victory');
+    let divvict = document.createElement('p');
+    divvict.classList.add('victory');
+    vict.style.display = "flex";
+    vict.appendChild(divvict);
+    divvict.innerText ="EMPATE";
+    const players = document.querySelector('.players_container');
+    players.style.display = "none";
+    container.style.display = "none";
+ }
+
+ function resetAll(){
+    container.innerHTML = "";
+    const vict = document.querySelector('.container-victory');
+    vict.style.display = "none";
+    console.log('apagando');
+ }
+
+ const breset = document.getElementById("breset");
+ 
+ breset.addEventListener('click', function r(){
+    resetAll();
+    const players = document.querySelector('.players_container');
+    players.style.display = "flex";
+    
+    map = [
+        ["E", "E", "E", "E", "E", "E", "E"],
+        ["E", "E", "E", "E", "E", "E", "E"],
+        ["E", "E", "E", "E", "E", "E", "E"],
+        ["E", "E", "E", "E", "E", "E", "E"],
+        ["E", "E", "E", "E", "E", "E", "E"],
+        ["E", "E", "E", "E", "E", "E", "E"],
+    ]
+
+    
+    createColumns();
+    
+    columnsElement.forEach((element) => {
+        element.addEventListener('click', addDisc);
+     })
+    container.style.display = 'flex';
+    const resetvict = document.querySelector('.container-victory');
+    resetvict.textContent = "";
+    });
+    
