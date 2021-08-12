@@ -271,5 +271,5 @@ columnsElement.forEach((element)=>{
     divvict.innerText ="EMPATE";
     const players = document.querySelector('.players_container');
     players.style.display = "none";
-    container.style.display = 'none';
+    container.style.display = "none";
  }
