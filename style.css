@@ -371,6 +371,4 @@ button:hover {
     .player:nth-child(2){
         flex-direction: row-reverse;
     }
-    
-
 }
