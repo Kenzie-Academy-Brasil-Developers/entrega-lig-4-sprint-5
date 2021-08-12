@@ -228,7 +228,37 @@ function checkWnner(numberDisc, lastDisc){
 
 createColumns();
 
+const startGame = () => {
+    let asideContainer = document.querySelector('aside')
+    let gameContainer = document.querySelector('main')
 
-columnsElement.forEach((element)=>{
+    let inputRedPlayer = document.querySelector('#redPlayerInput').value
+    let inputBlackPlayer = document.querySelector('#blackPlayerInput').value
+
+    let redPlayer = document.querySelector('#redPlayerName')
+    let blackPlayer = document.querySelector('#blackPlayerName')
+
+    let p1 = document.createElement('p')
+    let p2 = document.createElement('p')
+    
+    let textRedPlayer = document.createTextNode(inputRedPlayer)
+    let textBlackPlayer = document.createTextNode(inputBlackPlayer)
+    
+    if(inputBlackPlayer !== '' && inputRedPlayer !== ''){
+        p1.appendChild(textRedPlayer)
+        p2.appendChild(textBlackPlayer)
+        
+        redPlayer.appendChild(p1)
+        blackPlayer.appendChild(p2)
+
+        asideContainer.classList.add('hidden')
+        gameContainer.classList.remove('hidden')
+    }
+}
+
+let startGameButton = document.querySelector('button')
+startGameButton.addEventListener('click', startGame)
+
+columnsElement.forEach((element) => {
     element.addEventListener('click', addDisc);
  })
