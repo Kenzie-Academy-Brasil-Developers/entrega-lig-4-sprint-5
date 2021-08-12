@@ -48,15 +48,35 @@ const addDisc = (event) =>{
     disc.classList.add('disc');
     disc.dataset.col = target.dataset.column;
     disc.dataset.row = 5 - target.childElementCount; 
-    disc.style.backgroundColor = discColor[turn];
+    disc.classList.add('color--'+discColor[turn]);
+
 
     if(target.childElementCount !== 6){
-    if(target.childElementCount === 0){
-        target.appendChild(disc);
-    } else {
-        target.insertBefore(disc, target.children[0]);
+        
+        if(target.childElementCount === 0){
+            target.appendChild(disc);
+        } else {
+            target.insertBefore(disc, target.children[0]);
+        }
+
+        // switch the player turn and change classes
+        if(turn === 0){
+            turn = 1;
+        } else {
+            turn = 0;
+        }
+
+        columnsElement.forEach((element)=>{
+            element.classList.remove('red_turn', 'black_turn');
+            element.classList.add(discColor[turn]+'_turn');
+        })
+
+        playerElm.forEach((e)=>{
+            e.classList.remove('selected');
+        })
+
+        playerElm[turn].classList.add('selected');
     }
-}
 
     // variables used to update the map array
     let column = Number(target.dataset.column);
@@ -65,23 +85,7 @@ const addDisc = (event) =>{
     // update map array
     map[row][column] = turn.toString();
 
-    // switch the player turn and change classes
-    if(turn === 0){
-        turn = 1;
-    } else {
-        turn = 0;
-    }
-
-    columnsElement.forEach((element)=>{
-        element.classList.remove('red_turn', 'black_turn');
-        element.classList.add(discColor[turn]+'_turn');
-    })
-
-    playerElm.forEach((e)=>{
-        e.classList.remove('selected');
-    })
-
-    playerElm[turn].classList.add('selected');
+    
 
     
     
@@ -261,6 +265,9 @@ const startGame = () => {
 
         asideContainer.classList.add('hidden')
         gameContainer.classList.remove('hidden')
+
+        
+
     } 
     else {
     let textBlackPlayer = document.createTextNode('Jogador 1')
@@ -275,6 +282,9 @@ const startGame = () => {
     asideContainer.classList.add('hidden')
     gameContainer.classList.remove('hidden')
     }
+
+    document.querySelector('footer').style.height = '0px';
+    document.querySelector('footer').style.padding = '0';
 }
 
 let startGameButton = document.querySelector('button')
