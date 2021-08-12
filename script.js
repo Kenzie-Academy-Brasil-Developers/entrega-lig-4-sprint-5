@@ -2,6 +2,8 @@
 
 const container = document.querySelector('.container');
 const playerElm = document.querySelectorAll('.player');
+let inputBlackPlayer = ''
+let inputRedPlayer = ''
 let columnsElement;
 let discColor = ['black', 'red'];
 let turn = 0;
@@ -232,19 +234,20 @@ const startGame = () => {
     let asideContainer = document.querySelector('aside')
     let gameContainer = document.querySelector('main')
 
-    let inputRedPlayer = document.querySelector('#redPlayerInput').value
-    let inputBlackPlayer = document.querySelector('#blackPlayerInput').value
-
     let redPlayer = document.querySelector('#redPlayerName')
     let blackPlayer = document.querySelector('#blackPlayerName')
 
     let p1 = document.createElement('p')
     let p2 = document.createElement('p')
+        
+    inputRedPlayer = document.querySelector('#redPlayerInput').value
+    inputBlackPlayer = document.querySelector('#blackPlayerInput').value
     
-    let textRedPlayer = document.createTextNode(inputRedPlayer)
-    let textBlackPlayer = document.createTextNode(inputBlackPlayer)
-    
-    if(inputBlackPlayer !== '' && inputRedPlayer !== ''){
+    if(inputBlackPlayer !== '' && inputRedPlayer !== '') {
+
+        let textRedPlayer = document.createTextNode(inputRedPlayer)
+        let textBlackPlayer = document.createTextNode(inputBlackPlayer)
+
         p1.appendChild(textRedPlayer)
         p2.appendChild(textBlackPlayer)
         
@@ -253,6 +256,19 @@ const startGame = () => {
 
         asideContainer.classList.add('hidden')
         gameContainer.classList.remove('hidden')
+    } 
+    else {
+    let textBlackPlayer = document.createTextNode('Jogador 1')
+    let textRedPlayer = document.createTextNode('Jogador 2')
+
+    p1.appendChild(textRedPlayer)
+    p2.appendChild(textBlackPlayer)
+    
+    redPlayer.appendChild(p1)
+    blackPlayer.appendChild(p2)
+
+    asideContainer.classList.add('hidden')
+    gameContainer.classList.remove('hidden')
     }
 }
 
