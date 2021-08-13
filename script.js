@@ -300,7 +300,7 @@ columnsElement.forEach((element) => {
     divvict.classList.add('victory');
     vict.style.display = "flex";
     vict.appendChild(divvict);
-    divvict.innerHTML = inputBlackPlayer;
+    divvict.innerHTML = `${inputBlackPlayer} (cor preta) é o vencedor`;
     const players = document.querySelector('.players_container');
     players.style.display = "none"; 
     container.style.display = 'none';    
@@ -312,7 +312,7 @@ columnsElement.forEach((element) => {
     divvict.classList.add('victory');
     vict.style.display = "flex";
     vict.appendChild(divvict);
-    divvict.innerHTML = inputRedPlayer;
+    divvict.innerHTML = `${inputRedPlayer} (cor vermelha) é o vencedor`;
     const players = document.querySelector('.players_container');
     players.style.display = "none";
     container.style.display = 'none';
