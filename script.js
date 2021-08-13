@@ -225,11 +225,11 @@ function checkVictoryDecrescentDiagonal (line, column){
 // check winner
 
 function checkWnner(numberDisc, lastDisc){    
-    if (numberDisc === 3 && lastDisc === '0'){
+    if (numberDisc === 3 && lastDisc === '1'){
         console.log('victory black');
         blackWin();
     }
-    if (numberDisc === 3 && lastDisc === '1'){
+    if (numberDisc === 3 && lastDisc === '0'){
         console.log('victory red');
         redWin();
 
